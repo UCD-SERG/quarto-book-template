@@ -25,9 +25,13 @@ $$
 
 ## Figures
 
-You can include images:
+You can include images by placing them in the `images/` directory:
 
-![Example image caption](https://via.placeholder.com/400x300.png?text=Replace+with+your+image){#fig-example}
+```markdown
+![Example image caption](images/your-image.png){#fig-example}
+```
+
+Then reference the figure in text using `@fig-example`.
 
 ## Callouts
 
