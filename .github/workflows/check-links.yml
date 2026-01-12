@@ -30,41 +30,69 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create issue if links are broken
+      - name: Comment on PR or create issue if links are broken
         if: failure()
         uses: actions/github-script@v7
         with:
           script: |
-            const title = '🔗 Broken links detected';
-            const body = `The link checker workflow has detected broken links in the repository.
+            const workflowUrl = `${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}`;
             
-            **Workflow Run:** ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            // Check if this is a pull request
+            if (context.payload.pull_request) {
+              // Comment on the PR with broken link details
+              const prNumber = context.payload.pull_request.number;
+              const comment = `## 🔗 Broken Links Detected
             
-            Please review the workflow logs to see which links are broken and fix them.`;
+            The link checker has found broken or unreachable links in this PR.
             
-            // Check if an issue with this title already exists
-            const issues = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open',
-              labels: 'broken-links'
-            });
+            **Workflow Run:** ${workflowUrl}
             
-            const existingIssue = issues.data.find(issue => issue.title === title);
+            Please review the workflow logs above to see which links are broken and fix them before merging.
             
-            if (!existingIssue) {
-              await github.rest.issues.create({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                title: title,
-                body: body,
-                labels: ['broken-links', 'automated']
-              });
-            } else {
+            ### Recommended actions:
+            - Check the workflow logs for specific broken URLs
+            - Verify the URLs are correct and reachable
+            - Update or remove any broken links
+            - Push the fixes to this PR`;
+            
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                issue_number: existingIssue.number,
-                body: `Broken links were detected again.\n\n${body}`
+                issue_number: prNumber,
+                body: comment
               });
+            } else {
+              // Create or update an issue for main branch
+              const title = '🔗 Broken links detected';
+              const body = `The link checker workflow has detected broken links in the repository.
+            
+            **Workflow Run:** ${workflowUrl}
+            
+            Please review the workflow logs to see which links are broken and fix them.`;
+            
+              const issues = await github.rest.issues.listForRepo({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: 'open',
+                labels: 'broken-links'
+              });
+            
+              const existingIssue = issues.data.find(issue => issue.title === title);
+            
+              if (!existingIssue) {
+                await github.rest.issues.create({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  title: title,
+                  body: body,
+                  labels: ['broken-links', 'automated']
+                });
+              } else {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: existingIssue.number,
+                  body: `Broken links were detected again.\n\n${body}`
+                });
+              }
             }
