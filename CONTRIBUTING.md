@@ -60,6 +60,21 @@ If you're working on content for this book:
    ![Caption text](images/your-image.png){#fig-label}
    ```
 
+### Adding URLs
+
+When adding external links to your content, please ensure:
+
+1. **URLs are valid and reachable** - The repository has an automated link checker that runs weekly and on every push/pull request
+2. **Use HTTPS when possible** - Prefer secure URLs over HTTP
+3. **Check link stability** - Use permanent links (permalinks) when available rather than URLs that might change
+
+The link checker workflow will automatically:
+- Check all URLs in `.qmd`, `.md`, and `.html` files
+- Report broken or unreachable links
+- Create issues for broken links that need attention
+
+If you need to exclude certain URLs from checking (e.g., example URLs), add them to the `lychee.toml` configuration file.
+
 ### Citations
 
 Add BibTeX entries to `references.bib`:

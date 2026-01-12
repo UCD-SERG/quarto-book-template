@@ -61,3 +61,7 @@ Thumbs.db
 *.swp
 *.swo
 *~
+
+# Lychee link checker
+.lycheecache/
+lychee-output/
