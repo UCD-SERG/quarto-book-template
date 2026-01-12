@@ -1,0 +1,53 @@
+# Welcome {.unnumbered}
+
+This is a Quarto book template that you can use to create your own book.
+
+## About this book
+
+This book is built with [Quarto](https://quarto.org/), an open-source scientific and technical publishing system. You can use Quarto to create books, websites, blogs, presentations, and more from markdown files.
+
+## Getting Started
+
+To use this template:
+
+1. **Update the configuration**: Edit `_quarto.yml` to change the book title, author, repository URL, and chapters.
+
+2. **Add your content**: Create new `.qmd` files for each chapter and add them to the `chapters` list in `_quarto.yml`.
+
+3. **Customize the style**: Modify `styles.css` to change the appearance of your book.
+
+4. **Add references**: Update `references.bib` with your citations.
+
+## Building the book
+
+To render the book locally:
+
+```bash
+quarto render
+```
+
+To preview the book with live reload:
+
+```bash
+quarto preview
+```
+
+The rendered output will be in the `docs/` directory, which can be published to GitHub Pages.
+
+## Publishing to GitHub Pages
+
+This template includes a GitHub Actions workflow that automatically builds and publishes your book to GitHub Pages when you push to the main branch.
+
+To enable GitHub Pages:
+
+1. Go to your repository settings
+2. Navigate to "Pages" in the left sidebar
+3. Under "Source", select "Deploy from a branch"
+4. Select the `gh-pages` branch and `/ (root)` folder
+5. Click "Save"
+
+Your book will be available at `https://YOUR-USERNAME.github.io/YOUR-REPO/`
+
+## License
+
+Add your license information here.

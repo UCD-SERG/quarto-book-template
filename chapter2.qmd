@@ -1,0 +1,48 @@
+# Chapter 2: Advanced Topics
+
+This is the second chapter. Continue building your book with more chapters.
+
+## Mathematical Equations
+
+You can include mathematical equations using LaTeX syntax:
+
+Inline equation: $E = mc^2$
+
+Display equation:
+
+$$
+\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+$$
+
+## Tables
+
+| Column 1 | Column 2 | Column 3 |
+|----------|----------|----------|
+| Data 1   | Data 2   | Data 3   |
+| Data 4   | Data 5   | Data 6   |
+
+: Example table caption {#tbl-example}
+
+## Figures
+
+You can include images:
+
+![Example image caption](https://via.placeholder.com/400x300.png?text=Replace+with+your+image){#fig-example}
+
+## Callouts
+
+::: {.callout-note}
+This is a note callout. Use it to highlight important information.
+:::
+
+::: {.callout-tip}
+This is a tip callout. Share helpful suggestions with your readers.
+:::
+
+::: {.callout-warning}
+This is a warning callout. Alert readers to potential issues.
+:::
+
+::: {.callout-important}
+This is an important callout. Emphasize critical information.
+:::
