@@ -1,7 +1,9 @@
 DOCX
 EPUB
+README
 glitchy
 lintr
+md
 SERG
 SeRG
 TinyTeX
@@ -10,3 +12,5 @@ github
 io
 ucdavis
 ucdserg
+yaml
+yml
