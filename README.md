@@ -7,6 +7,7 @@ A template repository for creating books with [Quarto](https://quarto.org/). Thi
 - 📚 **Book-ready structure** with sample chapters and references
 - 🎨 **Customizable themes** supporting light and dark modes
 - 🚀 **Automatic deployment** to GitHub Pages via GitHub Actions
+- 🔗 **Automated link checking** to ensure all URLs are reachable
 - 📄 **Multiple output formats** including HTML, PDF, EPUB, and DOCX
 - 📑 **Bibliography support** with BibTeX integration
 - 🔢 **Automatic numbering** of sections and cross-references
@@ -162,6 +163,7 @@ Automatically generates AI-powered summaries for newly opened issues.
 ├── references.qmd           # References page
 ├── references.bib           # BibTeX bibliography
 ├── styles.css               # Custom CSS styles
+├── lychee.toml              # Link checker configuration
 ├── .gitignore              # Git ignore file
 ├── LICENSE                  # CC0 1.0 Universal License
 ├── README.md               # This file
@@ -179,7 +181,27 @@ Automatically generates AI-powered summaries for newly opened issues.
         ├── lint-project.yaml    # R code linting
         ├── copilot-setup-steps.yml  # GitHub Copilot setup
         └── summary.yml      # AI-powered issue summaries
+        └── check-links.yml  # URL reachability checker workflow
 ```
+
+## Automated Workflows
+
+This template includes two GitHub Actions workflows:
+
+### Publishing Workflow (`publish.yml`)
+Automatically builds and deploys your book to GitHub Pages when you push to the main branch.
+
+### Link Checker Workflow (`check-links.yml`)
+Automatically checks that all URLs in your book are reachable:
+- **Runs on**: Push to main, pull requests, weekly schedule (Mondays at 9:00 UTC), and manual trigger
+- **Checks**: All links in `.qmd`, `.md`, and `.html` files
+- **Reports**: Workflow fails if broken links are detected. Check the workflow logs for details on which links are broken.
+- **Configuration**: Customize behavior in `lychee.toml`
+
+To manually trigger the link checker:
+1. Go to the Actions tab in your repository
+2. Select "Check Links" workflow
+3. Click "Run workflow"
 
 ## Writing Content
 
