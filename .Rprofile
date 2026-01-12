@@ -1,6 +1,4 @@
-source("renv/activate.R")
-
 if (interactive()) {
-  require(usethis)
-  require(devtools)
+  suppressMessages(require(usethis, quietly = TRUE))
+  suppressMessages(require(devtools, quietly = TRUE))
 }
