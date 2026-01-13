@@ -35,15 +35,19 @@ jobs:
         if: failure() && github.ref == 'refs/heads/main'
         run: |
           # Create issue with broken link details
-          gh issue create \
-            --title "Broken links detected in main branch" \
-            --body "The link checker found broken links in the main branch.
+          BODY=$(cat <<'EOF'
+          The link checker found broken links in the main branch.
 
           **Workflow Run:** ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
           Please review the workflow logs above for details on which links are broken.
 
-          This issue was automatically created by the link checker workflow." \
+          This issue was automatically created by the link checker workflow.
+          EOF
+          )
+          gh issue create \
+            --title "Broken links detected in main branch" \
+            --body "$BODY" \
             --assignee copilot \
             --label "bug,automated"
         env:
