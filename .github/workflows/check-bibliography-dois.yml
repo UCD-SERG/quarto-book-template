@@ -23,9 +23,6 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@HEAD
         with:
-          needs: |
-            connect
-            website
           extra-packages: |
             any::pkgdown
             any::rmarkdown
