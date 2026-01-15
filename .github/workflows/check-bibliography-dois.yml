@@ -23,7 +23,7 @@ jobs:
 
       - name: Install R dependencies
         run: |
-          install.packages(c("bib2df", "httr", "jsonlite", "stringr"), repos = "https://packagemanager.posit.co/cran/__linux__/noble/latest")
+          install.packages(c("bib2df", "httr", "jsonlite", "stringr"), repos = "https://cloud.r-project.org")
         shell: Rscript {0}
 
       - name: Find bibliography files

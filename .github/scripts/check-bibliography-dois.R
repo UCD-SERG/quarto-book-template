@@ -142,7 +142,7 @@ normalize_string <- function(s) {
   
   # Convert to lowercase, remove punctuation, remove extra whitespace
   s <- tolower(s)
-  s <- str_replace_all(s, "[^\\w\\s]", "")
+  s <- str_replace_all(s, "[^a-zA-Z0-9\\s]", "")
   s <- str_replace_all(s, "\\s+", " ")
   return(trimws(s))
 }
@@ -324,7 +324,7 @@ check_bibliography_file <- function(filepath, verify_metadata = TRUE) {
 }
 
 # Main execution
-main <- function() {
+run_doi_validation <- function() {
   args <- commandArgs(trailingOnly = TRUE)
   
   # Parse arguments
@@ -373,4 +373,4 @@ main <- function() {
 }
 
 # Run main function
-main()
+run_doi_validation()
